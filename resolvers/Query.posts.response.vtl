@@ -1,0 +1,11 @@
+#foreach($post in $ctx.result.items)
+   #set($post.id = $post.sk)
+
+   #set($dataSplit = $post.data.split("#"))
+   #set($post.published = $dataSplit[0] == "published")
+   #set($post.publishedAt = $dataSplit[1])
+#end
+
+{
+    "posts": $util.toJson($ctx.result.items)
+}

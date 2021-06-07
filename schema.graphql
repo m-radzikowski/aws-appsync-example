@@ -1,0 +1,30 @@
+type Query {
+    posts(limit: Int): PostsConnection!
+}
+
+#### POST
+
+type PostsConnection {
+    posts: [Post!]!
+}
+
+type Post {
+    id: ID!
+    title: String!
+    published: Boolean!
+    publishedAt: String
+    author: Author!
+}
+
+##### AUTHOR
+
+type Author {
+    id: ID!
+    name: String!
+    image: AuthorImage
+}
+
+type AuthorImage {
+    fullSize: String!
+    thumbnail: String!
+}

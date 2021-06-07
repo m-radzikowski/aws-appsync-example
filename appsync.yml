@@ -1,0 +1,28 @@
+name: ${self:custom.baseName}
+
+authenticationType: API_KEY
+apiKeys:
+  - name: web
+    expiresAfter: 365d
+
+logConfig:
+  level: ${self:custom.appSyncLogLevel}
+  excludeVerboseContent: true
+
+xrayEnabled: true
+
+mappingTemplatesLocation: resolvers
+
+dataSources:
+  - name: DynamoTable
+    type: AMAZON_DYNAMODB
+    config:
+      tableName: !Ref DynamoTable
+
+mappingTemplates:
+  - type: Query
+    field: posts
+    dataSource: DynamoTable
+  - type: Post
+    field: author
+    dataSource: DynamoTable

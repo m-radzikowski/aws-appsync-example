@@ -1,0 +1,12 @@
+{
+    "version": "2017-02-28",
+    "operation": "Query",
+    "index": "gsi1",
+    "query": {
+        "expression": "pk = :pk",
+        "expressionValues": {
+            ":pk": $util.dynamodb.toDynamoDBJson("POST")
+        }
+    },
+    "limit": $util.defaultIfNull($ctx.args.limit, 10)
+}
